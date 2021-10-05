@@ -1,8 +1,38 @@
 <!doctype html>
 <html lang="en">
-  <body>
-    <h1>A Test Website</h1>
-    <h3>This is my first test website hosted on Github Pages.</h3>
-    <p>This is written in HTML.</p>
-  </body>  
+  <head>
+    <meta charset="UTF-8">
+    <title>JavaScript Drum Kit</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  
+<body>
+  <div>
+    <div data-key="65" class="key">
+      <kbd>A</kbd>
+      <span class="sound">clap</span> 
+  </div>
+    
+  <audio data-key="65" src="sounds/clap.wav"></audio>
+  <script>
+
+    function playSound(e) {
+      const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+      const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+      if (!audio) return;
+      audio.currentTime = 0; //rewind to start
+      audio.play();
+      key.classList.add('playing');
+    }
+    
+    function removeTransition(e) {
+      if (e.propertyName !== 'transform') return; //skip it if it's not a transform
+      this.classList.remove('playing');
+    }
+    
+    const keys = document.querySelectorAll('.key');
+    keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+    window.addEventListener('keydown', playSound);
+  </script>  
+</body>
 </html>
