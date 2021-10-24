@@ -21,13 +21,12 @@ body, html {
 .key {
   border: .4rem solid black;
   border-radius: .5rem;
-  position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-5%, -5%);
   font-size: 1.5rem;
   padding: 1rem .5rem;
-  transition: all .07s ease;
+  transition: all .07s;
   width: 10rem;
   text-align: center;
   color: white;
